@@ -22,9 +22,9 @@ graph TD
     H -->|Calculate Priority Score 0-100| I[Cost Analysis & FinOps Engine]
 
     G --> J[Multi-Channel Notification Dispatcher]
-    J -->|Slack Alert| K[#cloud-governance-alerts]
-    J -->|Email Alert| L[devops-alerts@enterprise.com]
-    J -->|Webhook| M[HTTPS Webhook Endpoint]
+    J -->|Slack Alert| K["#cloud-governance-alerts"]
+    J -->|Email Alert| L["devops-alerts@enterprise.com"]
+    J -->|Webhook| M["HTTPS Webhook Endpoint"]
 
     I --> N[FastAPI Backend REST Endpoints]
     N --> O[React 18 + TS Tailwind Frontend]
