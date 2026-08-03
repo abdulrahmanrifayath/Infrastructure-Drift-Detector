@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Database, ShieldAlert, User, Cpu } from 'lucide-react';
+import { LayoutDashboard, Database, RefreshCw, User, Cpu } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   const navItems = [
@@ -13,6 +13,11 @@ export const Sidebar: React.FC = () => {
       label: 'Resource Inventory',
       path: '/inventory',
       icon: Database,
+    },
+    {
+      label: 'Cloud Synchronization',
+      path: '/sync',
+      icon: RefreshCw,
     },
     {
       label: 'User Profile',

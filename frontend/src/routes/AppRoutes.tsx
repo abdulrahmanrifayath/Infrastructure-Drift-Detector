@@ -4,6 +4,7 @@ import { Login } from '../pages/Login';
 import { Register } from '../pages/Register';
 import { Dashboard } from '../pages/Dashboard';
 import { ResourceInventory } from '../pages/ResourceInventory';
+import { CloudSync } from '../pages/CloudSync';
 import { UserProfile } from '../pages/UserProfile';
 import { AppLayout } from '../components/layout/AppLayout';
 import { useAuth } from '../context/AuthContext';
@@ -44,6 +45,14 @@ export const AppRoutes: React.FC = () => {
         element={
           <ProtectedRoute>
             <ResourceInventory />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/sync"
+        element={
+          <ProtectedRoute>
+            <CloudSync />
           </ProtectedRoute>
         }
       />
