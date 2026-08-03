@@ -7,6 +7,8 @@ import { ResourceInventory } from '../pages/ResourceInventory';
 import { CloudSync } from '../pages/CloudSync';
 import { DriftHistory } from '../pages/DriftHistory';
 import { ResourceComparison } from '../pages/ResourceComparison';
+import { CostAnalyticsDashboard } from '../pages/CostAnalyticsDashboard';
+import { AIRecommendations } from '../pages/AIRecommendations';
 import { UserProfile } from '../pages/UserProfile';
 import { AppLayout } from '../components/layout/AppLayout';
 import { useAuth } from '../context/AuthContext';
@@ -71,6 +73,22 @@ export const AppRoutes: React.FC = () => {
         element={
           <ProtectedRoute>
             <ResourceComparison />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/cost-analytics"
+        element={
+          <ProtectedRoute>
+            <CostAnalyticsDashboard />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/recommendations"
+        element={
+          <ProtectedRoute>
+            <AIRecommendations />
           </ProtectedRoute>
         }
       />
