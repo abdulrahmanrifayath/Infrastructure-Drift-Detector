@@ -9,6 +9,7 @@ import { DriftHistory } from '../pages/DriftHistory';
 import { ResourceComparison } from '../pages/ResourceComparison';
 import { CostAnalyticsDashboard } from '../pages/CostAnalyticsDashboard';
 import { AIRecommendations } from '../pages/AIRecommendations';
+import { SystemMonitoring } from '../pages/SystemMonitoring';
 import { UserProfile } from '../pages/UserProfile';
 import { AppLayout } from '../components/layout/AppLayout';
 import { useAuth } from '../context/AuthContext';
@@ -89,6 +90,14 @@ export const AppRoutes: React.FC = () => {
         element={
           <ProtectedRoute>
             <AIRecommendations />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/monitoring"
+        element={
+          <ProtectedRoute>
+            <SystemMonitoring />
           </ProtectedRoute>
         }
       />
