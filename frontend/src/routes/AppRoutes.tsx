@@ -5,6 +5,8 @@ import { Register } from '../pages/Register';
 import { Dashboard } from '../pages/Dashboard';
 import { ResourceInventory } from '../pages/ResourceInventory';
 import { CloudSync } from '../pages/CloudSync';
+import { DriftHistory } from '../pages/DriftHistory';
+import { ResourceComparison } from '../pages/ResourceComparison';
 import { UserProfile } from '../pages/UserProfile';
 import { AppLayout } from '../components/layout/AppLayout';
 import { useAuth } from '../context/AuthContext';
@@ -53,6 +55,22 @@ export const AppRoutes: React.FC = () => {
         element={
           <ProtectedRoute>
             <CloudSync />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/drift"
+        element={
+          <ProtectedRoute>
+            <DriftHistory />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/comparison"
+        element={
+          <ProtectedRoute>
+            <ResourceComparison />
           </ProtectedRoute>
         }
       />
