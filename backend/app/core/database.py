@@ -5,12 +5,24 @@ from sqlalchemy.orm import sessionmaker, Session
 from app.core.config import settings
 from app.core.logging import logger
 
-engine = create_engine(
-    settings.DATABASE_URL,
-    pool_pre_ping=True,
-    pool_size=10,
-    max_overflow=20
-)
+db_url = settings.DATABASE_URL or "sqlite:///./drift_detector.db"
+
+# Fallback to SQLite if PostgreSQL/psycopg is blocked by Windows App Control or unavailable locally
+try:
+    engine = create_engine(
+        db_url,
+        pool_pre_ping=True,
+        pool_size=10 if "sqlite" not in db_url else 5,
+        max_overflow=20 if "sqlite" not in db_url else 10,
+        connect_args={"check_same_thread": False} if "sqlite" in db_url else {}
+    )
+except Exception as e:
+    logger.warning(f"PostgreSQL connection failed ({str(e)}). Falling back to SQLite database engine.")
+    db_url = "sqlite:///./drift_detector.db"
+    engine = create_engine(
+        db_url,
+        connect_args={"check_same_thread": False}
+    )
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
