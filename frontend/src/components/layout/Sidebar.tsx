@@ -1,4 +1,4 @@
-import React;
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { LayoutDashboard, Database, RefreshCw, AlertTriangle, GitCompare, DollarSign, Sparkles, Activity, TrendingUp, ShieldCheck, User, Cpu } from 'lucide-react';
 
