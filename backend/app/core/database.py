@@ -7,22 +7,27 @@ from app.core.logging import logger
 
 db_url = settings.DATABASE_URL or "sqlite:///./drift_detector.db"
 
-# Fallback to SQLite if PostgreSQL/psycopg is blocked by Windows App Control or unavailable locally
-try:
-    engine = create_engine(
-        db_url,
-        pool_pre_ping=True,
-        pool_size=10 if "sqlite" not in db_url else 5,
-        max_overflow=20 if "sqlite" not in db_url else 10,
-        connect_args={"check_same_thread": False} if "sqlite" in db_url else {}
-    )
-except Exception as e:
-    logger.warning(f"PostgreSQL connection failed ({str(e)}). Falling back to SQLite database engine.")
-    db_url = "sqlite:///./drift_detector.db"
-    engine = create_engine(
-        db_url,
-        connect_args={"check_same_thread": False}
-    )
+def init_engine():
+    global db_url
+    if "sqlite" in db_url:
+        return create_engine(db_url, connect_args={"check_same_thread": False})
+    try:
+        eng = create_engine(
+            db_url,
+            pool_pre_ping=True,
+            pool_size=10,
+            max_overflow=20
+        )
+        # Test connection
+        with eng.connect() as conn:
+            pass
+        return eng
+    except Exception as e:
+        logger.warning(f"Database connection to '{db_url}' failed ({str(e)}). Falling back to SQLite local database.")
+        db_url = "sqlite:///./drift_detector.db"
+        return create_engine(db_url, connect_args={"check_same_thread": False})
+
+engine = init_engine()
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
