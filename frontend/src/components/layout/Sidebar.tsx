@@ -1,6 +1,6 @@
-import React from 'react';
+import React;
 import { NavLink } from 'react-router-dom';
-import { LayoutDashboard, Database, RefreshCw, AlertTriangle, GitCompare, DollarSign, Sparkles, Activity, User, Cpu } from 'lucide-react';
+import { LayoutDashboard, Database, RefreshCw, AlertTriangle, GitCompare, DollarSign, Sparkles, Activity, TrendingUp, ShieldCheck, User, Cpu } from 'lucide-react';
 
 export const Sidebar: React.FC = () => {
   const navItems = [
@@ -28,6 +28,16 @@ export const Sidebar: React.FC = () => {
       label: 'Resource Comparison',
       path: '/comparison',
       icon: GitCompare,
+    },
+    {
+      label: 'Analytics & Trends',
+      path: '/analytics',
+      icon: TrendingUp,
+    },
+    {
+      label: 'Compliance Governance',
+      path: '/compliance',
+      icon: ShieldCheck,
     },
     {
       label: 'Cost Analytics',

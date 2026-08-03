@@ -10,6 +10,8 @@ import { ResourceComparison } from '../pages/ResourceComparison';
 import { CostAnalyticsDashboard } from '../pages/CostAnalyticsDashboard';
 import { AIRecommendations } from '../pages/AIRecommendations';
 import { SystemMonitoring } from '../pages/SystemMonitoring';
+import { DriftAnalyticsPage } from '../pages/DriftAnalyticsPage';
+import { ComplianceDashboardPage } from '../pages/ComplianceDashboardPage';
 import { UserProfile } from '../pages/UserProfile';
 import { AppLayout } from '../components/layout/AppLayout';
 import { useAuth } from '../context/AuthContext';
@@ -74,6 +76,22 @@ export const AppRoutes: React.FC = () => {
         element={
           <ProtectedRoute>
             <ResourceComparison />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/analytics"
+        element={
+          <ProtectedRoute>
+            <DriftAnalyticsPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/compliance"
+        element={
+          <ProtectedRoute>
+            <ComplianceDashboardPage />
           </ProtectedRoute>
         }
       />
