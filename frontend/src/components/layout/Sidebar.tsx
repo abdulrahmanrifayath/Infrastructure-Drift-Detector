@@ -62,13 +62,13 @@ export const Sidebar: React.FC = () => {
   ];
 
   return (
-    <aside className="w-64 border-r border-slate-800/80 bg-slate-950/60 flex flex-col justify-between p-4 hidden md:flex min-h-[calc(100vh-4rem)]">
+    <aside className="w-64 border-r border-emerald-500/10 bg-slate-950/30 backdrop-blur-2xl flex flex-col justify-between p-4 hidden md:flex min-h-[calc(100vh-4rem)]">
       <div className="space-y-6">
         <div>
-          <p className="px-3 text-[10px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+          <p className="px-3 text-[10px] font-bold text-emerald-400/80 uppercase tracking-widest mb-3">
             Governance Navigation
           </p>
-          <nav className="space-y-1">
+          <nav className="space-y-1.5">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -76,10 +76,10 @@ export const Sidebar: React.FC = () => {
                   key={item.path}
                   to={item.path}
                   className={({ isActive }) =>
-                    `flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    `flex items-center space-x-3 px-3.5 py-2.5 rounded-2xl text-sm font-semibold transition-all ${
                       isActive
-                        ? 'bg-sky-500/10 text-sky-400 border border-sky-500/20 shadow-sm'
-                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900'
+                        ? 'bg-gradient-to-r from-emerald-500/20 via-sky-500/15 to-purple-500/10 text-emerald-300 border border-emerald-500/30 shadow-lg shadow-emerald-500/10 backdrop-blur-md'
+                        : 'text-slate-400 hover:text-slate-100 hover:bg-white/5 hover:border hover:border-white/10'
                     }`
                   }
                 >
@@ -92,13 +92,13 @@ export const Sidebar: React.FC = () => {
         </div>
       </div>
 
-      <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4">
-        <div className="flex items-center space-x-2.5 text-xs text-sky-400 font-medium mb-1">
-          <Cpu className="w-4 h-4" />
-          <span>Rule Engine Active</span>
+      <div className="glass-panel rounded-2xl p-4 border border-emerald-500/20 shadow-lg shadow-emerald-950/20">
+        <div className="flex items-center space-x-2.5 text-xs text-emerald-300 font-bold mb-1.5">
+          <Cpu className="w-4 h-4 text-emerald-400 animate-pulse" />
+          <span className="aurora-text">Northern Lights Active</span>
         </div>
-        <p className="text-[11px] text-slate-400 leading-relaxed">
-          Modular governance architecture ready for AI/LLM integration.
+        <p className="text-[11px] text-slate-400 leading-relaxed font-medium">
+          Glassmorphism governance theme initialized with real-time drift telemetry.
         </p>
       </div>
     </aside>

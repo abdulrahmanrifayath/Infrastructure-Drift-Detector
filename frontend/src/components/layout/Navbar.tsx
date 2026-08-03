@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, User, LogOut, Activity } from 'lucide-react';
+import { Shield, LogOut, Activity, Sparkles } from 'lucide-react';
 import { useAuth } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 
@@ -7,18 +7,20 @@ export const Navbar: React.FC = () => {
   const { user, logout } = useAuth();
 
   return (
-    <header className="border-b border-slate-800/80 bg-slate-900/80 backdrop-blur-md sticky top-0 z-40">
+    <header className="border-b border-emerald-500/10 bg-slate-950/40 backdrop-blur-2xl sticky top-0 z-40 shadow-xl shadow-cyan-950/20">
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Brand Header */}
         <div className="flex items-center space-x-3">
-          <div className="w-9 h-9 rounded-xl bg-sky-500/10 border border-sky-500/20 text-sky-400 flex items-center justify-center shadow-lg shadow-sky-500/5">
+          <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500/20 via-sky-500/20 to-purple-500/20 border border-emerald-400/30 text-emerald-300 flex items-center justify-center shadow-lg shadow-emerald-500/10">
             <Shield className="w-5 h-5" />
           </div>
           <div className="flex items-center space-x-3">
-            <span className="font-bold text-white tracking-tight text-lg">Infrastructure Drift Detector</span>
-            <span className="hidden sm:inline-flex items-center space-x-1.5 px-2.5 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-400 rounded-full border border-emerald-500/20">
-              <Activity className="w-3 h-3 animate-pulse" />
-              <span>AWS Connected</span>
+            <span className="font-extrabold text-white tracking-tight text-lg aurora-text">
+              Infrastructure Drift Detector
+            </span>
+            <span className="hidden sm:inline-flex items-center space-x-1.5 px-3 py-1 text-xs font-semibold bg-emerald-500/10 text-emerald-300 rounded-full border border-emerald-500/30 backdrop-blur-md shadow-sm">
+              <Activity className="w-3.5 h-3.5 animate-pulse text-emerald-400" />
+              <span>Aurora Active</span>
             </span>
           </div>
         </div>
@@ -27,20 +29,20 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center space-x-4">
           <Link
             to="/profile"
-            className="flex items-center space-x-3 p-1.5 px-3 rounded-xl hover:bg-slate-800/60 border border-transparent hover:border-slate-800 transition-all text-left"
+            className="flex items-center space-x-3 p-1.5 px-3 rounded-2xl glass-panel hover:border-emerald-500/30 transition-all text-left group"
           >
-            <div className="w-8 h-8 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center text-slate-300 font-semibold text-xs">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-600 to-sky-600 border border-emerald-300/40 flex items-center justify-center text-white font-bold text-xs shadow-md">
               {user?.full_name ? user.full_name.charAt(0).toUpperCase() : 'U'}
             </div>
             <div className="hidden sm:block">
-              <p className="text-xs font-semibold text-slate-200">{user?.full_name || 'Engineer'}</p>
-              <p className="text-[10px] text-slate-400 capitalize">{user?.role || 'Engineer'}</p>
+              <p className="text-xs font-bold text-slate-100 group-hover:text-emerald-300 transition-colors">{user?.full_name || 'Engineer'}</p>
+              <p className="text-[10px] text-slate-400 capitalize font-medium">{user?.role || 'Engineer'}</p>
             </div>
           </Link>
 
           <button
             onClick={logout}
-            className="p-2 text-slate-400 hover:text-red-400 hover:bg-red-500/10 rounded-xl border border-transparent hover:border-red-500/20 transition-all"
+            className="p-2.5 text-slate-400 hover:text-rose-400 hover:bg-rose-500/10 rounded-2xl border border-white/5 hover:border-rose-500/20 transition-all backdrop-blur-md"
             title="Sign Out"
           >
             <LogOut className="w-4 h-4" />
