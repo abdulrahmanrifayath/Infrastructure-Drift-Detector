@@ -8,26 +8,35 @@ from app.core.logging import logger
 from app.core.database import engine, Base
 from app.presentation.api.v1.router import api_router
 from app.presentation.middleware.logging_middleware import LoggingMiddleware
+from app.presentation.middleware.security_headers import SecurityHeadersMiddleware
+from app.presentation.middleware.rate_limiter import RateLimiterMiddleware
 from app.presentation.middleware.error_handler import (
     http_exception_handler,
     validation_exception_handler,
     global_exception_handler,
 )
 
-# Auto-create tables for initial phase foundation (Alembic can manage migrations)
+# Auto-create database tables
 Base.metadata.create_all(bind=engine)
 
 
 def create_application() -> FastAPI:
     """
-    FastAPI Application Factory function initializing settings, middleware, exception handlers, and routes.
+    FastAPI Application Factory function initializing settings, CORS, middleware, exception handlers, and API router.
     """
     app = FastAPI(
         title=settings.PROJECT_NAME,
+        version="1.0.0",
         openapi_url=f"{settings.API_V1_STR}/openapi.json",
         docs_url=f"{settings.API_V1_STR}/docs",
         redoc_url=f"{settings.API_V1_STR}/redoc",
     )
+
+    # Security Headers Middleware
+    app.add_middleware(SecurityHeadersMiddleware)
+
+    # Rate Limiter Middleware
+    app.add_middleware(RateLimiterMiddleware)
 
     # CORS Middleware
     if settings.BACKEND_CORS_ORIGINS:
@@ -39,7 +48,7 @@ def create_application() -> FastAPI:
             allow_headers=["*"],
         )
 
-    # Custom Logging Middleware
+    # Logging Middleware
     app.add_middleware(LoggingMiddleware)
 
     # Exception Handlers
@@ -50,7 +59,7 @@ def create_application() -> FastAPI:
     # API Routes
     app.include_router(api_router, prefix=settings.API_V1_STR)
 
-    logger.info("Infrastructure Drift Detector FastAPI application initialized.")
+    logger.info("Infrastructure Drift Detector production-ready FastAPI application initialized.")
     return app
 
 
